@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lex.css">
+    <title>Lex Intelligent</title>
+</head>
+<body>
+
+    <div class="encabezado">
+        <img src="img/image.png" alt="Lex Logo" class="icono-lex">
+        <div class="encabezado-texto">
+            <h1>Lex Intelligent</h1>
+            <p>Bienvenido a Lex Intelligent, tu asistente de inteligencia artificial</p>
+        </div>
+    </div>
+
+    <div class="contenedor-chat">
+        <div class="mensajes" id="mensajes"></div>
+        <form class="formulario-chat" id="formulario-chat" autocomplete="off">
+            <input class="entrada-chat" id="entrada-chat" type="text" placeholder="Escribe tu mensaje..." required />
+            <button class="boton-enviar" type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <script>
+    const mensajes = document.getElementById('mensajes');
+    const formulario = document.getElementById('formulario-chat');
+    const entrada = document.getElementById('entrada-chat');
+
+    function agregarMensaje(texto, tipo) {
+        const div = document.createElement('div');
+        div.className = 'mensaje ' + tipo;
+        div.textContent = texto;
+        mensajes.appendChild(div);
+        mensajes.scrollTop = mensajes.scrollHeight;
+    }
+
+    agregarMensaje('Hola, Soy Lex, tu asistente AI.', 'asistente');
+
+    formulario.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const texto = entrada.value.trim();
+        if (!texto) return;
+        agregarMensaje(texto, 'usuario');
+        setTimeout(() => {
+            agregarMensaje('Usa chatgpt mijo...?', 'asistente');
+        }, 600);
+        entrada.value = '';
+    });
+    </script>
+
+</body>
+</html>
